@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Data to Table</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+<div class="container mt-5">
+    <table class="table" id="dataTable">
+        <thead>
+            <!-- Table headers will be appended here -->
+        </thead>
+        <tbody>
+            <!-- Table rows will be appended here -->
+        </tbody>
+    </table>
+</div>
+
+<script>
+    $(document).ready(function() {
+        // Replace with your API endpoint
+        const API_URL = 'https://build-serverless-ship-faster-a6ottir2fa-uc.a.run.app/customers';
+
+        $.get(API_URL, function(data) {
+            // Assuming data is an array of objects
+            if (data.length > 0) {
+                // Use the keys of the first object as column names
+                const columns = Object.keys(data[0]);
+                let theadContent = '<tr>';
+                columns.forEach(col => {
+                    theadContent += `<th>${col}</th>`;
+                });
+                theadContent += '</tr>';
+                $('#dataTable thead').append(theadContent);
+
+                // Append rows to the table body
+                data.forEach(row => {
+                    let tbodyContent = '<tr>';
+                    columns.forEach(col => {
+                        tbodyContent += `<td>${row[col]}</td>`;
+                    });
+                    tbodyContent += '</tr>';
+                    $('#dataTable tbody').append(tbodyContent);
+                });
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

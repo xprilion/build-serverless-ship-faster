@@ -10,48 +10,15 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-
-<div class="container mt-5">
-    <table class="table" id="dataTable">
-        <thead>
-            <!-- Table headers will be appended here -->
-        </thead>
-        <tbody>
-            <!-- Table rows will be appended here -->
-        </tbody>
-    </table>
-</div>
-
-<script>
-    $(document).ready(function() {
-        // Replace with your API endpoint
-        const API_URL = 'https://build-serverless-ship-faster-a6ottir2fa-uc.a.run.app/orders';
-
-        $.get(API_URL, function(data) {
-            // Assuming data is an array of objects
-            if (data.length > 0) {
-                // Use the keys of the first object as column names
-                const columns = Object.keys(data[0]);
-                let theadContent = '<tr>';
-                columns.forEach(col => {
-                    theadContent += `<th>${col}</th>`;
-                });
-                theadContent += '</tr>';
-                $('#dataTable thead').append(theadContent);
-
-                // Append rows to the table body
-                data.forEach(row => {
-                    let tbodyContent = '<tr>';
-                    columns.forEach(col => {
-                        tbodyContent += `<td>${row[col]}</td>`;
-                    });
-                    tbodyContent += '</tr>';
-                    $('#dataTable tbody').append(tbodyContent);
-                });
-            }
-        });
-    });
-</script>
-
+    <h1>Build Serverless, Ship Faster</h1>
+    <hr />
+    <ul>
+        <li>
+            <a href="/customers">Customers</a>
+        </li>
+        <li>
+            <a href="/orders">Orders</a>
+        </li>
+    </ul>
 </body>
 </html>
