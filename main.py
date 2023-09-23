@@ -1,4 +1,5 @@
 from flask import Flask, jsonify
+from flask_cors import CORS
 from models import db, Customer, Order
 import os
 from dotenv import load_dotenv
@@ -6,6 +7,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = Flask(__name__)
+CORS(app)
 
 # Database connection string
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URI')
