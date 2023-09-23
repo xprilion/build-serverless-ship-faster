@@ -11,6 +11,12 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URI')
 db.init_app(app)
 
+
+@app.route('/', methods=['GET'])
+def root():
+    return jsonify({"hello": "world"})
+
+
 @app.route('/customers', methods=['GET'])
 def get_customers():
     customers = Customer.query.all()
